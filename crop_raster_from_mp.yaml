@@ -1,0 +1,46 @@
+---
+spec-version: v1.0
+name: proserv/crop_raster_from_mp
+version: 1.0.0
+display-name: Crop raster from microplots
+description: Crop raster from microplots and export in zip
+docker-image: registry-external.admin-tool.delair-stack.com/kuent/crop_raster_from_mp
+instance-type: large
+volume-size: 20
+groups: [Agriculture]
+inputs:
+  - name: microplot_in
+    display-name: Microplots vector
+    description: Microplots vector to crop raster
+    kind: dataset
+    schema:
+      type: vector
+    required: true
+  - name: raster_in
+    display-name: Raster to crop
+    description: Raster to crop
+    kind: dataset
+    schema:
+      type: raster
+    required: true
+parameters:
+  - name: attribute
+    display-name: Attribute
+    description: Attribute with unique IDs to identify clipped microplot
+    schema:
+      type: string
+    required: true
+  - name: suffix
+    display-name: Suffixe
+    description: Suffixe to output folder
+    schema:
+      type: string
+    required: false
+deliverables:
+  - name: microplots_raster_zip
+    display-name: Microplots cropped from raster
+    description: Microplots cropped from raster in a zip
+    kind: dataset
+    schema:
+      type: file
+    required: true
